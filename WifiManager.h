@@ -1,3 +1,5 @@
+#include "read_html.h"
+
 /*
  * Function to handle unknown URLs
  */
@@ -72,7 +74,7 @@ void handleRoot() {
     handleSubmit();
   }
   else {
-    server.send(200, "text/html", INDEX_HTML);
+    server.send(200, "text/html", read_html("wifi_login.html"));
   }
 }
 
