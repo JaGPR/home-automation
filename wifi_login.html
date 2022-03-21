@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wifi Login</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        label {
+            text-align: left;
+        }
+
+        .flex-item-center {
+            align-self: center;
+        }
+
+        .Login {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            background-color: hsl(350, 100%, 88%);
+            font-family: 'Poppins', sans-serif;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+        .Login-card {
+            background: rgba(255, 255, 255, 0.75);
+            height: 45rem;
+            width: 33rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-radius: 1rem;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .Login .Login-card .Login-heading {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 1.2rem 0;
+        }
+
+        .Login .Login-card .Login-heading .Login-welcome {
+            font-size: 1.5rem;
+        }
+
+        .Login .Login-card .Login-heading .Login-welcome strong {
+            color: #2F80ED;
+        }
+
+        .Login .Login-card .Login-input {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+        }
+
+        .Login .Login-card .Login-input h1 {
+            padding: 2rem 4rem;
+            font-size: 3rem;
+        }
+
+        .Login .Login-card .Login-input .data-input {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            padding: 0 4rem;
+            align-content: center;
+        }
+
+        .Login .Login-card .Login-input .data-input input {
+            padding: 0 1.5rem;
+            background: #FFFFFF;
+            border: 1px solid #ADADAD;
+            box-sizing: border-box;
+            border-radius: 9px;
+            height: 3rem;
+        }
+
+        button {
+            margin: 1rem;
+            height: 3rem;
+            background: #2F80ED;
+            box-shadow: 0 4px 19px #80A8DE;
+            border-style: none;
+            border-radius: 10px;
+            color: white;
+            width: 12rem;
+            cursor: pointer;
+
+            align-self: center;
+        }
+
+        @media (max-width:768px) {
+            .Login {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .Login .Login-card {
+                margin-right: 0;
+                width: 27rem;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="Login">
+        <div class="Login-card">
+            <!-- distance between these -->
+            <div class="Login-heading">
+                <span class="Login-welcome">
+                    Welcome!
+                </span>
+            </div>
+
+            <div>
+                <form action="/" method="post" class="Login-input">
+                    <h3>Enter your wifi credentials</h3>
+                    <div class="data-input">
+                        <label>SSID</label>
+                        <input type="text" maxlength="30" placeholder="SSID" />
+                    </div>
+
+                    <div class="data-input">
+                        <label> Password</label>
+                        <input type="password" maxlength="30" placeholder="Password" />
+                    </div>
+                        <button type="submit">Go</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
