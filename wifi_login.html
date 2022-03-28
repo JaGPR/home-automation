@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wifi Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=0">
+    <title>ESP8266 Web Form</title>
     <style>
         * {
             padding: 0;
@@ -13,79 +12,56 @@
             box-sizing: border-box;
         }
 
-        body {
-            text-align: center;
+        /* label text to be aligned to the left */
+        form#wifi-details label {
+            align-self: flex-start;
         }
 
-        label {
-            text-align: left;
+        /* common flex styles */
+        .login,
+        .login-card,
+        form#wifi-details,
+        .data-input {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        .flex-item-center {
-            align-self: center;
-        }
-
-        .Login {
+        .login {
+            background-color: hsl(350, 100%, 88%);
             height: 100vh;
             width: 100%;
-            position: relative;
-            background-color: hsl(350, 100%, 88%);
+
             font-family: 'Poppins', sans-serif;
-            
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            align-items: center;
-
         }
 
-        .Login-card {
+        .login-card {
             background: rgba(255, 255, 255, 0.75);
-            height: 45rem;
+            height: 100vh;
             width: 33rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             border-radius: 1rem;
-            align-items: center;
             z-index: 10;
+
+            justify-content: space-evenly;
         }
 
-        .Login .Login-card .Login-heading {
-            display: flex;
-            justify-content: space-between;
-            padding: 1.5rem 1.2rem 0;
+        .login-card-heading {
+            font-style: italic;
+            text-transform: capitalize;
+            font-weight: 600;
         }
 
-        .Login .Login-card .Login-heading .Login-welcome {
-            font-size: 1.5rem;
+        form#wifi-details {
+            height: 55%;
+            justify-content: space-evenly;
         }
 
-        .Login .Login-card .Login-heading .Login-welcome strong {
-            color: #2F80ED;
-        }
-
-        .Login .Login-card .Login-input {
-            display: flex;
+        .data-input {
             justify-content: flex-start;
-            flex-direction: column;
         }
 
-        .Login .Login-card .Login-input h1 {
-            padding: 2rem 4rem;
-            font-size: 3rem;
-        }
-
-        .Login .Login-card .Login-input .data-input {
-            display: flex;
-            justify-content: flex-start;
-            flex-direction: column;
-            padding: 0 4rem;
-            align-content: center;
-        }
-
-        .Login .Login-card .Login-input .data-input input {
+        input {
             padding: 0 1.5rem;
             background: #FFFFFF;
             border: 1px solid #ADADAD;
@@ -94,30 +70,59 @@
             height: 3rem;
         }
 
-        button {
+        button#submit-details {
             margin: 1rem;
             height: 3rem;
-            background: #2F80ED;
-            box-shadow: 0 4px 19px #80A8DE;
+            background-color: #2f80ed;
+            box-shadow: 0 4px 19px #80a8de;
             border-style: none;
             border-radius: 10px;
             color: white;
             width: 12rem;
             cursor: pointer;
+        }
 
-            align-self: center;
+        .house {
+            position: relative;
+            width: 0px;
+            height: 0px;
+            box-sizing: content-box;
+
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 50px solid hsl(350, 100%, 88%);
+        }
+
+        .house:before,
+        .house:after {
+            content: "";
+            box-sizing: content-box;
+            position: absolute;
+            background-color: hsl(350, 100%, 88%);
+        }
+
+        .house:before {
+            width: 10px;
+            height: 30px;
+            top: 20px;
+            left: 30px;
+        }
+
+        .house:after {
+            width: 100px;
+            height: 60px;
+            top: 50px;
+            left: -50px;
         }
 
         @media (max-width:768px) {
-            .Login {
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            .login {
+                border-radius: 1rem;
             }
 
-            .Login .Login-card {
-                margin-right: 0;
-                width: 27rem;
+            .login-card {
+                height: 100vh;
+                width: 100%;
             }
         }
 
@@ -125,30 +130,29 @@
 </head>
 
 <body>
-    <div class="Login">
-        <div class="Login-card">
-            <!-- distance between these -->
-            <div class="Login-heading">
-                <span class="Login-welcome">
-                    Welcome!
-                </span>
+    <div class="login">
+        <div class="login-card">
+            <div class="login-card-heading">
+                <span>Enter your WiFi credentials</span>
             </div>
 
-            <div>
-                <form action="/" method="post" class="Login-input">
-                    <h3>Enter your wifi credentials</h3>
-                    <div class="data-input">
-                        <label>SSID</label>
-                        <input name="ssid" type="text" maxlength="30" placeholder="SSID" />
-                    </div>
+            <div class="house"></div>
 
-                    <div class="data-input">
-                        <label> Password</label>
-                        <input  name="password" type="password" maxlength="30" placeholder="Password" />
-                    </div>
-                        <button type="submit">Go</button>
-                </form>
-            </div>
+            <form id="wifi-details" action="ESP8266_Web_Form_Demo.html/" method="post">
+                <div class="data-input">
+                    <label for="ssid">SSID</label>
+                    <input id="ssid" type="text" maxlength="30" name="ssid" placeholder="SSID">
+                </div>
+
+                <div class="data-input">
+                    <label for="password">Key</label>
+                    <input id="password" type="password" maxlength="30" name="password" placeholder="Password">
+                </div>
+
+                <div class="data-input">
+                    <button id="submit-details" type="submit">Go</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>
